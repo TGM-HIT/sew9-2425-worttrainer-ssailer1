@@ -11,9 +11,12 @@ public class WortTrainer {
     private WortTrainerSpeichern data = new WortTrainerSpeichern();
 
     public void load(){
-        //this.wt = 
-        try { data.safe(); }
-        catch (HeadlessException | IOException | JSONException e) { e.printStackTrace(); }
+        
+        try { 
+            //data.safe();
+            wt = data.load();
+        
+        } catch (HeadlessException | IOException | JSONException e) { e.printStackTrace(); }
         
     }
 }

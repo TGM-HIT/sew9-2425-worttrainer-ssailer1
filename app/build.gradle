@@ -20,7 +20,9 @@ dependencies {
     testImplementation libs.junit.jupiter
 
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    implementation group: 'org.json', name: 'json', version: '20090211' 
+    implementation group: 'org.json', name: 'json', version: '20090211'
+    implementation group: 'com.googlecode.jfilechooser-bookmarks', name: 'jfilechooser-bookmarks', version: '0.1.0'
+ 
     // This dependency is used by the application.
     implementation libs.guava
 
