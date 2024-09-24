@@ -13,7 +13,7 @@ public class WortTrainer {
     public void load(){
         
         try { 
-            //data.safe();
+            //data.safe(1,1);
             wt = data.load();
         
         } catch (HeadlessException | IOException | JSONException e) { e.printStackTrace(); }
