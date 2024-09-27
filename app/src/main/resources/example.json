@@ -2,15 +2,31 @@
     "eintraege": [
         {
             "name": "hund",
-            "url": "hund"
+            "url": "https://www.freepnglogos.com/uploads/dog-png/bow-wow-gourmet-dog-treats-are-healthy-natural-low-4.png"
         },
         {
-            "name": "ajdisp#o",
-            "url": "jpsoia"
+            "name": "haus",
+            "url": "https://www.freepnglogos.com/uploads/house-png/house-png-commonwealth-magazine-18.png"
+        },
+        {
+            "name": "baum",
+            "url": "https://www.freepnglogos.com/uploads/tree-png/no-background-tree-3.jpg"
+        },
+        {
+            "name": "adidas",
+            "url": "https://www.freepnglogos.com/uploads/picture-logo-png/black-adidas-transparent-logo-png-0.png"
+        },
+        {
+            "name": "nike",
+            "url": "https://www.freepnglogos.com/uploads/picture-logo-png/picture-nike-logo-black-emblem-6.png"
+        },
+        {
+            "name": "amazon",
+            "url": "https://www.freepnglogos.com/uploads/picture-logo-png/picture-amazon-logo-15.png"
         }
     ],
     "statistik": {
-        "insgesamt": 1,
-        "richtig": 1
+        "insgesamt": 0,
+        "richtig": 0
     }
 }

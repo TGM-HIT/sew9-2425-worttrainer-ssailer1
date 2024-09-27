@@ -2,7 +2,6 @@ package model;
 
 import java.awt.HeadlessException;
 import java.io.*;
-import java.util.ArrayList;
 import javax.swing.*;
 
 import org.json.JSONArray;
@@ -13,45 +12,30 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class WortTrainerSpeichern {
 
-    private int rVersuche;
-    private int gVersuche;
+    private int rVersuche = 0;
+    private int gVersuche = 0;
     private WortTrainer wt;
 
-    public void safe(int gVersuche, int rVersuche) throws IOException, HeadlessException, JSONException {
-        this.rVersuche = rVersuche;
-        this.gVersuche = gVersuche;
-
-        boolean mehr = true;
+    public void save() throws IOException, HeadlessException, JSONException {
+        
         JSONArray ja = new JSONArray();
-        JSONObject jo;
-        boolean check = true;
-
-        String name;
-        String url;
-        do {
-            jo = new JSONObject();
-            JOptionPane.showMessageDialog(null, "Wort hinzufügen!");
-
-            name = JOptionPane.showInputDialog(null, "Bild Name: ");
-            if (!name.isEmpty()) { jo.put("name", name);} else { check = false; }
-
-            url = JOptionPane.showInputDialog(null, "URL: ");
-            if (!url.isEmpty()) { jo.put("url", url); } else { check = false; }
-
-            if (check) { ja.put(jo); } else { JOptionPane.showMessageDialog(null, "Falscher Input"); }
-
-            if (JOptionPane.showConfirmDialog(null, "Noch eins?", "Wort hinzufügen", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
-                mehr = false;
-            }
-        } while (mehr);
-
+        
+        
         JSONObject statistik = new JSONObject();
         statistik.put("insgesamt", this.gVersuche);
         statistik.put("richtig", this.rVersuche);
 
+        for(WortEintrag eintrag : this.wt.getList()){
+            JSONObject eintragJson = new JSONObject();
+            eintragJson.put("name", eintrag.getName());
+            eintragJson.put("url", eintrag.getUrl());
+            ja.put(eintragJson);
+        }
+
         JSONObject mainJson = new JSONObject();
         mainJson.put("statistik", statistik);
         mainJson.put("eintraege", ja);
+
 
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON Dateien", "json");
@@ -77,8 +61,8 @@ public class WortTrainerSpeichern {
     }
 
     
-    public void load() throws IOException, JSONException {
-        System.out.println("jafile");
+    public void load(WortTrainer wt) throws IOException, JSONException {
+        this.wt = wt;
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON Dateien", "json");
         chooser.setFileFilter(filter);
@@ -87,7 +71,7 @@ public class WortTrainerSpeichern {
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             String filePath = chooser.getSelectedFile().getAbsolutePath();
-            doLoad(filePath, wt);
+            doLoad(filePath, this.wt);
             System.out.println("Daten wurden erfolgreich geladen: " + filePath);
 
         } else {
@@ -127,5 +111,49 @@ public class WortTrainerSpeichern {
                 wt.addEintrag(jo.getString("name"), jo.getString("url"));
             }
         }
+    }
+    public void loadDefault(WortTrainer wt){
+        this.wt = wt;
+        String currentPath = "";
+        try { 
+            currentPath = new java.io.File(".").getCanonicalPath();
+            currentPath += "/src/main/resources/example.json";
+            doLoad(currentPath, this.wt);
+        } catch (HeadlessException | IOException | JSONException e) { e.printStackTrace(); }
+    }
+
+    public void woerterHinzufuegen(WortTrainer wt) throws JSONException{
+        this.wt = wt;
+        boolean mehr = true;
+        String name;
+        String url;
+        do {
+            JOptionPane.showMessageDialog(null, "Wort hinzufügen!");
+
+            name = JOptionPane.showInputDialog(null, "Bild Name: ");
+            url = JOptionPane.showInputDialog(null, "URL: ");
+            
+            if(name!=null&&url!=null){
+                this.wt.addEintrag(name, url);
+            }
+
+            if (JOptionPane.showConfirmDialog(null, "Noch eins?", "Wort hinzufügen", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
+                mehr = false;
+            }
+        } while (mehr);
+    }
+
+    public void addTrue(){
+        this.rVersuche += 1;
+        this.gVersuche += 1;
+    }
+    public void addFalse(){
+        this.gVersuche += 1;
+    }
+    public int getVersuche(){
+        return this.gVersuche;
+    }
+    public int getRVersuche(){
+        return this.rVersuche;
     }
 }
