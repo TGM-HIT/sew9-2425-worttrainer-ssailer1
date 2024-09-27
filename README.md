@@ -35,3 +35,6 @@ Der **WortTrainer** ist eine Java-basierte Anwendung, die Schülern hilft, Recht
 2. Wähle ein Wort-Bild-Paar und gib das entsprechende Wort ein.
 3. Überprüfe die Eingabe und erhalte Rückmeldungen zur Korrektheit.
 4. Beende die Session und speichere den Fortschritt.
+
+
+Bilder von: https://www.freepnglogos.com/pics/picture-logo
