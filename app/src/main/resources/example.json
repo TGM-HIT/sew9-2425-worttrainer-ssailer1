@@ -1,0 +1,16 @@
+{
+    "eintraege": [
+        {
+            "name": "hund",
+            "url": "hund"
+        },
+        {
+            "name": "ajdisp#o",
+            "url": "jpsoia"
+        }
+    ],
+    "statistik": {
+        "insgesamt": 1,
+        "richtig": 1
+    }
+}
