@@ -12,11 +12,20 @@ import javax.imageio.ImageIO;
 
 import org.json.JSONException;
 
+/**
+ * Klasse WortTrainer in dem das "Spiel" abläuft
+ * @author: Sebastian Sailer
+ * @version: 30.09.2024
+ */
+
 public class WortTrainer {
     
     private WortTrainerSpeichern wts = new WortTrainerSpeichern();
     private ArrayList<WortEintrag> list = new ArrayList<>();
 
+    /*
+     * Konstruktor
+     */
     public WortTrainer(){
         boolean runtime=true;
         if (JOptionPane.showConfirmDialog(null, "Bevor wir beginnen, möchten Sie Woerter hinzufuegen?", "Wort hinzufuegen", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -25,6 +34,9 @@ public class WortTrainer {
         }
         if (JOptionPane.showConfirmDialog(null, "Wollen Sie einen Speicherstand laden?", "Laden", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             CountDownLatch cdl = new CountDownLatch(1);
+            /**
+             * Benuzung von SwingUtilities, damit der File Chooser angezeigt wird
+             */
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
                     try {
@@ -41,9 +53,6 @@ public class WortTrainer {
         }
         else{ this.wts.loadDefault(this); }
 
-        // for (WortEintrag eintrag : this.list) {
-        //     System.out.println(eintrag.toString());
-        // }
 
         
         do{
@@ -56,6 +65,9 @@ public class WortTrainer {
         JOptionPane.showMessageDialog(null, temp );
         if (JOptionPane.showConfirmDialog(null, "Möchten Sie ihren Fortschritt speichern?", "Keines mehr", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             CountDownLatch cdl = new CountDownLatch(1);
+            /**
+             * Benuzung von SwingUtilities, damit der File Chooser angezeigt wird
+             */
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
                     try {
@@ -73,6 +85,12 @@ public class WortTrainer {
         }
         
     }
+
+    /**
+     * Methode zum anzeigen eines Images mittels link
+     * @param link Url zum Bild
+     * @throws URISyntaxException
+     */
 
     public static void showImage(String link) throws URISyntaxException {
         try {
@@ -103,6 +121,9 @@ public class WortTrainer {
         }
     }
     
+    /**
+     * Methode die ein random Eintrag nimmt und den Benutzer abfragt was gesehen wurde
+     */
 
     public void newItem(){
         int rand = (int)(Math.random() * this.list.size());
@@ -115,6 +136,11 @@ public class WortTrainer {
         check(JOptionPane.showInputDialog(null, "Was war das?"),this.list.get(rand).getName());
     }
 
+    /**
+     * Chechk Methode, die checkt ob das Eingegebene Wort mit dem des WortEintrags übereinstimmt
+     * @param f Eingabe des Benutzers
+     * @param t Richtige Lösung
+     */
 
     public void check(String f, String t){
         if(f!=null&&t!=null&&f.toLowerCase().equals(t.toLowerCase())){
@@ -128,7 +154,9 @@ public class WortTrainer {
         }
     }
 
-    
+    /**
+     * Getter und Setter Methoden
+     */
 
     public void addEintrag(String name, String url){
         this.list.add(new WortEintrag(name,url));

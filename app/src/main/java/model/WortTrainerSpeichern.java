@@ -9,6 +9,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+/**
+ * Klasse zum Laden und Speicehrn der daten mittels JSON
+ * @author Sebastian Sailer
+ * @version: 30.09.2024
+ */
 
 public class WortTrainerSpeichern {
 
@@ -16,10 +21,17 @@ public class WortTrainerSpeichern {
     private int gVersuche = 0;
     private WortTrainer wt;
 
+    /**
+     * Speicher Methode, die die einzelnen WortEinträge in ein JSONArray speichert
+     * Ebenso wir ein 
+     * @throws IOException
+     * @throws HeadlessException
+     * @throws JSONException
+     */
+
     public void save() throws IOException, HeadlessException, JSONException {
         
         JSONArray ja = new JSONArray();
-        
         
         JSONObject statistik = new JSONObject();
         statistik.put("insgesamt", this.gVersuche);
@@ -61,6 +73,13 @@ public class WortTrainerSpeichern {
     }
 
     
+    /**
+     * Benutzt einen Filechooser und benutzt dann die doLoad Methode um die File zu laden
+     * @param wt um die Einträge zu erstellen
+     * @throws IOException
+     * @throws JSONException
+     */
+
     public void load(WortTrainer wt) throws IOException, JSONException {
         this.wt = wt;
         JFileChooser chooser = new JFileChooser();
@@ -78,6 +97,14 @@ public class WortTrainerSpeichern {
             System.out.println("Laden wurde abgebrochen.");
         }
     }
+
+    /**
+     * Lädt die übergebene File (als Dateipfad) und liest die JSON Objekte aus
+     * @param pathString übergebene File (als Dateipfad)
+     * @param wt um die Einträge zu erstellen
+     * @throws IOException
+     * @throws JSONException
+     */
 
     public void doLoad(String pathString, WortTrainer wt) throws IOException, JSONException {
         this.wt = wt;
@@ -112,6 +139,12 @@ public class WortTrainerSpeichern {
             }
         }
     }
+
+    /**
+     * Läd example.json Standartmäßg als Datei
+     * @param wt
+     */
+    
     public void loadDefault(WortTrainer wt){
         this.wt = wt;
         String currentPath = "";
@@ -121,6 +154,12 @@ public class WortTrainerSpeichern {
             doLoad(currentPath, this.wt);
         } catch (HeadlessException | IOException | JSONException e) { e.printStackTrace(); }
     }
+
+    /**
+     * Ermöglicht das hinzufügen von WortEinträgen
+     * @param wt
+     * @throws JSONException
+     */
 
     public void woerterHinzufuegen(WortTrainer wt) throws JSONException{
         this.wt = wt;
@@ -142,6 +181,10 @@ public class WortTrainerSpeichern {
             }
         } while (mehr);
     }
+
+    /**
+     * Setter und Getter Methoden
+     */
 
     public void addTrue(){
         this.rVersuche += 1;
