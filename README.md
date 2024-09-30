@@ -11,7 +11,7 @@ Der **WortTrainer** ist eine Java-basierte Anwendung, die Schülern hilft, Recht
 - **Wort-Bild-Paare**: Zu einem Bild (über eine URL verlinkt) muss das entsprechende Wort eingegeben werden.
 - **Überprüfung**: Die eingegebene Antwort wird mit der korrekten Schreibweise verglichen, und eine Rückmeldung wird angezeigt.
 - **Statistik**: Der Trainer führt eine Statistik über richtig/falsch geratene Wörter.
-- **Persistenz**: Der aktuelle Zustand des Trainers (Wortpaare, ausgewähltes Paar, Statistik) kann gespeichert und geladen werden (z. B. im JSON-Format).
+- **Persistenz**: Der aktuelle Zustand des Trainers (Wortpaare, ausgewähltes Paar, Statistik) kann gespeichert und geladen werden, im JSON-Format.
 - **Grafische Oberfläche**: Das Programm verwendet einfache JOptionPane-Dialoge zur Anzeige der Bilder und Eingabe der Wörter.
 
 ## Technologien
@@ -21,13 +21,11 @@ Der **WortTrainer** ist eine Java-basierte Anwendung, die Schülern hilft, Recht
 - **JSON**: Daten werden im JSON-Format gespeichert und geladen.
 - **GitHub**: Versionskontrolle und Repository.
 - **JUnit**: Für automatisierte Tests.
-- **Externe Bibliotheken**: Integration weiterer Bibliotheken über Gradle.
-
+- **JSON**: Datenspeicherung mittels JSON.
 ## Entwicklungsprozess
 
 - **Git Repository**: Alle Änderungen werden über Git versioniert.
 - **Entwurf und Implementierung**: Features werden zuerst geplant (UML-Diagramme) und dann implementiert, getestet und dokumentiert.
-- **Continuous Integration**: Automatisierung (z. B. Tests) über GitHub Actions.
 
 ## Verwendung
 
